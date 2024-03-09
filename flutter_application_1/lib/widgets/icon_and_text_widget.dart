@@ -20,10 +20,10 @@ class IconAndTextWidget extends StatelessWidget {
         Icon(
           icon,
           color: iconColor,
-          size: Dimensions.iconSize24,
+          size: Dimensions.iconSize16,
         ),
         SizedBox(
-          width: 5,
+          width: 1,
         ),
         SmallText(text: text)
       ],

@@ -18,10 +18,9 @@ class SmallText extends StatelessWidget {
   Widget build(BuildContext context) {
     return Text(
       text,
-      
       style: TextStyle(
           fontFamily: 'Roboto',
-          fontSize: 12,
+          fontSize: 10,
           color: color,
           fontWeight: FontWeight.w400),
     );
