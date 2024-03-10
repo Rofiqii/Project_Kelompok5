@@ -2,11 +2,16 @@ import 'package:dots_indicator/dots_indicator.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
+import 'package:flutter_application_1/controllers/popular_product_controller.dart';
+import 'package:flutter_application_1/models/products_model.dart';
+import 'package:flutter_application_1/utils/app_constants.dart';
 import 'package:flutter_application_1/utils/colors.dart';
 import 'package:flutter_application_1/utils/dimensions.dart';
+import 'package:flutter_application_1/widgets/app_column.dart';
 import 'package:flutter_application_1/widgets/big_text.dart';
 import 'package:flutter_application_1/widgets/icon_and_text_widget.dart';
 import 'package:flutter_application_1/widgets/small_text.dart';
+import 'package:get/get.dart';
 
 class FoodPageBody extends StatefulWidget {
   const FoodPageBody({super.key});
@@ -40,27 +45,37 @@ class _FoodPageBodyState extends State<FoodPageBody> {
     return Column(
       children: [
         //  slider section
-        Container(
-          // color: Colors.redAccent,
-          height: Dimensions.pageView,
-          child: PageView.builder(
-              controller: pageController,
-              itemCount: 3,
-              itemBuilder: (context, position) {
-                return _buildPageItem(position);
-              }),
+        GetBuilder<PopularProductController>(
+          builder: (popularProducts) {
+            return Container(
+              // color: Colors.redAccent,
+              height: Dimensions.pageView,
+              child: PageView.builder(
+                  controller: pageController,
+                  itemCount: popularProducts.popularProductList.length,
+                  itemBuilder: (context, position) {
+                    return _buildPageItem(
+                        position, popularProducts.popularProductList[position]);
+                  }),
+            );
+          },
         ),
         //dots
-        new DotsIndicator(
-          dotsCount: 5,
-          position: _currPageValue,
-          decorator: DotsDecorator(
-            activeColor: AppColors.mainColor,
-            size: const Size.square(9.0),
-            activeSize: const Size(18.0, 9.0),
-            activeShape: RoundedRectangleBorder(
-                borderRadius: BorderRadius.circular(5.0)),
-          ),
+        GetBuilder<PopularProductController>(
+          builder: (popularProducts) {
+            return DotsIndicator(
+              dotsCount: 5,
+              position: _currPageValue,
+              decorator: DotsDecorator(
+                activeColor: AppColors.mainColor,
+                size: const Size.square(9.0),
+                activeSize: const Size(18.0, 9.0),
+                activeShape: RoundedRectangleBorder(
+                  borderRadius: BorderRadius.circular(5.0),
+                ),
+              ),
+            );
+          },
         ),
         //Popular text
         SizedBox(
@@ -144,7 +159,7 @@ class _FoodPageBodyState extends State<FoodPageBody> {
                                 children: [
                                   IconAndTextWidget(
                                       icon: Icons.circle_sharp,
-                                      text: "Normal",
+                                      text: "Tes",
                                       iconColor: AppColors.iconColor1),
                                   IconAndTextWidget(
                                       icon: Icons.location_on,
@@ -169,7 +184,7 @@ class _FoodPageBodyState extends State<FoodPageBody> {
     );
   }
 
-  Widget _buildPageItem(int index) {
+  Widget _buildPageItem(int index, ProductModel popularProduct) {
     Matrix4 matrix = new Matrix4.identity();
 
     if (index == _currPageValue.floor()) {
@@ -202,13 +217,17 @@ class _FoodPageBodyState extends State<FoodPageBody> {
         children: [
           Container(
             height: Dimensions.pageViewContainer,
-            margin: EdgeInsets.only(left: 10, right: 10),
+            margin: EdgeInsets.only(left: Dimensions.width10, right: Dimensions.width10),
             decoration: BoxDecoration(
-                borderRadius: BorderRadius.circular(Dimensions.radius30),
-                color: index.isEven ? Color(0xFF69c5df) : Color(0xFF9294cc),
-                image: DecorationImage(
-                    fit: BoxFit.cover,
-                    image: AssetImage("assets/image/food1.jpg"))),
+              borderRadius: BorderRadius.circular(Dimensions.radius30),
+              color: index.isEven ? Color(0xFF69c5df) : Color(0xFF9294cc),
+              image: DecorationImage(
+                fit: BoxFit.cover,
+                image: NetworkImage(
+                    AppConstants.BASE_URL + "/uploads/" + popularProduct.img!
+                  ),
+              ),
+            ),
           ),
           Align(
             alignment: Alignment.bottomCenter,
@@ -232,61 +251,7 @@ class _FoodPageBodyState extends State<FoodPageBody> {
               child: Container(
                 padding: EdgeInsets.only(
                     top: Dimensions.height15, left: 15, right: 15),
-                child: Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    BigText(text: "Sisi China"),
-                    SizedBox(
-                      height: Dimensions.height10,
-                    ),
-                    //comments section
-                    Row(
-                      children: [
-                        Wrap(
-                          children: List.generate(
-                              5,
-                              (index) => Icon(
-                                    Icons.star,
-                                    color: AppColors.mainColor,
-                                    size: 15,
-                                  )),
-                        ),
-                        SizedBox(
-                          width: 3,
-                        ),
-                        SmallText(text: "4.5"),
-                        SizedBox(
-                          width: 10,
-                        ),
-                        SmallText(text: "1287"),
-                        SizedBox(
-                          width: 3,
-                        ),
-                        SmallText(text: "Komen")
-                      ],
-                    ),
-                    SizedBox(
-                      height: Dimensions.height20,
-                    ),
-                    //time and distance
-                    Row(
-                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                      children: [
-                        IconAndTextWidget(
-                            icon: Icons.circle_sharp,
-                            text: "Normal",
-                            iconColor: AppColors.iconColor1),
-                        IconAndTextWidget(
-                            icon: Icons.location_on,
-                            text: "1.7km",
-                            iconColor: AppColors.mainColor),
-                        IconAndTextWidget(
-                            icon: Icons.access_time_rounded,
-                            text: "32min",
-                            iconColor: AppColors.iconColor1)
-                      ],
-                    )
-                  ],
+                child: AppColumn(text: popularProduct.name!,                  
                 ),
               ),
             ),
