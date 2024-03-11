@@ -1,9 +1,8 @@
 import 'dart:async';
-
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_application_1/controllers/popular_product_controller.dart';
-import 'package:flutter_application_1/routes/routes_helper.dart';
+import 'package:flutter_application_1/routes/route_helper.dart';
 import 'package:get/get.dart';
 
 class SplashScreen extends StatefulWidget {
