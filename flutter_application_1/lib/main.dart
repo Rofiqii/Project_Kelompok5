@@ -6,13 +6,13 @@ import 'package:flutter_application_1/pages/food/recommended_food_detail.dart';
 import 'package:flutter_application_1/pages/home/food_page_body.dart';
 import 'package:flutter_application_1/pages/home/main_food_page.dart';
 import 'package:flutter_application_1/pages/splash/splash_page.dart';
-import 'package:flutter_application_1/routes/routes_helper.dart';
+import 'package:flutter_application_1/routes/route_helper.dart';
 import 'package:get/get.dart';
 import 'helper/dependencies.dart' as dep;
 
 Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
-  await dep.init();
+   await dep.init();
   runApp(const MyApp());
 }
 
