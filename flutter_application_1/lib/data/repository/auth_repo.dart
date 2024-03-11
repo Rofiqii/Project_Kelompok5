@@ -14,8 +14,11 @@ class AuthRepo {
         AppConstants.REGISTRATION_URI, signUpBody.toJson());
   }
 
-  saveUserToken(String token) {
+  saveUserToken(String token) async {
+    //saving token through controller till you logged out
     apiClient.token = token;
+    apiClient.updateHeader(token);
+    return await sharedPreferences.setString(AppConstants.TOKEN, token);
   }
 }
 
