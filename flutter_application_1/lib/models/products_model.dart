@@ -23,9 +23,9 @@ class Product {
     if (json['products'] != null) {
       _products = <ProductModel>[];
       json['products'].forEach((v) {
-        _products!.add(new ProductModel.fromJson(json));
+        _products.add(new ProductModel.fromJson(v));
       });
-    } else {}
+    } 
   }
 }
 
@@ -60,5 +60,11 @@ class ProductModel {
     price = json['price'];
     stars = json['stars'];
     img = json['img'];
+    location = json['location'];
+    createdAt = json['created_at'];
+    updatedAt = json['updated_at'];
+    typeId = json['type_id'];
   }
+
+
 }

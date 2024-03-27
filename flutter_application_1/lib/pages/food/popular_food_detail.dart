@@ -1,6 +1,12 @@
+// ignore_for_file: public_member_api_docs, sort_constructors_first
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
+import 'package:flutter_application_1/controllers/cart_controller.dart';
+import 'package:flutter_application_1/controllers/popular_product_controller.dart';
+import 'package:flutter_application_1/pages/home/main_food_page.dart';
+import 'package:flutter_application_1/routes/route_helper.dart';
+import 'package:flutter_application_1/utils/app_constants.dart';
 import 'package:flutter_application_1/utils/colors.dart';
 import 'package:flutter_application_1/utils/dimensions.dart';
 import 'package:flutter_application_1/widgets/app_column.dart';
@@ -12,10 +18,20 @@ import 'package:flutter_application_1/widgets/small_text.dart';
 import 'package:get/get.dart';
 
 class PopularFoodDetail extends StatelessWidget {
-  const PopularFoodDetail({Key? key}) : super(key: key);
+  final int pageId;
+  const PopularFoodDetail({
+    Key? key,
+    required this.pageId,
+  }) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
+    var product =
+        Get.find<PopularProductController>().popularProductList[pageId];
+    Get.find<PopularProductController>()
+        .initProduct(product, Get.find<CartController>());
+    //  print("page is id" + pageId.toString());
+    //  print("product name is " + product.name.toString());
     return Scaffold(
       backgroundColor: Colors.white,
       body: Stack(
@@ -28,9 +44,12 @@ class PopularFoodDetail extends StatelessWidget {
               width: double.maxFinite,
               height: Dimensions.popularFoodImgSize,
               decoration: BoxDecoration(
-                  image: DecorationImage(
-                      fit: BoxFit.cover,
-                      image: AssetImage("assets/image/food1.jpg"))),
+                image: DecorationImage(
+                    fit: BoxFit.cover,
+                    image: NetworkImage(AppConstants.BASE_URL_MEIYI +
+                        AppConstants.UPLOAD_URL +
+                        product.img!)),
+              ),
             ),
           ),
           //icon widgets
@@ -41,8 +60,44 @@ class PopularFoodDetail extends StatelessWidget {
             child: Row(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
-                AppIcon(icon: Icons.arrow_back_ios_new),
-                AppIcon(icon: Icons.shopping_cart_outlined)
+                GestureDetector(
+                    onTap: () {
+                      Get.toNamed(RouteHelper.getInitial());
+                    },
+                    child: AppIcon(icon: Icons.arrow_back_ios_new)),
+                GetBuilder<PopularProductController>(builder: ((controller) {
+                  return Stack(
+                    children: [
+                      AppIcon(
+                        icon: Icons.shopping_cart_outlined,
+                      ),
+                      Get.find<PopularProductController>().totalItems >= 1
+                          ? Positioned(
+                              right: 0,
+                              top: 0,
+                              child: AppIcon(
+                                icon: Icons.circle,
+                                size: 20,
+                                iconColor: Colors.transparent,
+                                backgroundColor: AppColors.mainColor,
+                              ),
+                            )
+                          : Container(),
+                      Get.find<PopularProductController>().totalItems >= 1
+                          ? Positioned(
+                              right: 3,
+                              top: 3,
+                              child: BigText(
+                                text: Get.find<PopularProductController>()
+                                    .totalItems
+                                    .toString(),
+                                size: 12,
+                                color: Colors.white,
+                              ))
+                          : Container()
+                    ],
+                  );
+                }))
               ],
             ),
           ),
@@ -65,16 +120,15 @@ class PopularFoodDetail extends StatelessWidget {
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-                  AppColumn(text: "Sisi China"),
+                  AppColumn(text: product.name!),
                   SizedBox(
                     height: Dimensions.height20,
                   ),
                   BigText(text: "Introduce"),
                   Expanded(
                       child: SingleChildScrollView(
-                          child: ExpandableTextWidget(
-                              text:
-                                  "Makanan atau panganan adalah zat yang dimakan oleh makhluk hidup untuk mendapatkan nutrisi yang kemudian diolah menjadi energi. Karbohidrat, lemak, protein, vitamin, dan mineral merupakan nutrien dalam makanan yang dibutuhkan oleh tubuh. Cairan untuk dikonsumsi sering disebut minuman, tetapi kata 'makanan' juga bisa dipakai untuk menggantikannya. Makanan yang dikonsumsi oleh manusia disebut pangan, sedangkan makanan yang dikonsumsi oleh hewan disebut pakan.")))
+                          child:
+                              ExpandableTextWidget(text: product.description!)))
                 ],
               ),
             ),
@@ -82,63 +136,83 @@ class PopularFoodDetail extends StatelessWidget {
           //expandable text widget
         ],
       ),
-      bottomNavigationBar: Container(
-        height: 120,
-        padding: EdgeInsets.only(
-            top: Dimensions.height30,
-            bottom: Dimensions.height30,
-            left: Dimensions.width20,
-            right: Dimensions.width20),
-        decoration: BoxDecoration(
-          color: AppColors.buttonBackgroundColor,
-          borderRadius: BorderRadius.only(
-            topRight: Radius.circular(Dimensions.radius20 * 2),
-            topLeft: Radius.circular(Dimensions.radius20 * 2),
-          ),
-        ),
-        child: Row(
-          children: [
-            Container(
-              decoration: BoxDecoration(
-                  borderRadius: BorderRadius.circular(Dimensions.radius20),
-                  color: Colors.white),
-              child: Row(
-                children: [
-                  Icon(
-                    Icons.remove,
-                    color: AppColors.signColor,
-                  ),
-                  SizedBox(
-                    width: Dimensions.width10 / 2,
-                  ),
-                  BigText(text: "0"),
-                  SizedBox(
-                    width: Dimensions.width10 / 2,
-                  ),
-                  Icon(
-                    Icons.add,
-                    color: AppColors.signColor,
-                  ),
-                ],
-              ),
+      bottomNavigationBar:
+          GetBuilder<PopularProductController>(builder: (popularProduct) {
+        return Container(
+          height: 120,
+          padding: EdgeInsets.only(
+              top: Dimensions.height30,
+              bottom: Dimensions.height30,
+              left: Dimensions.width20,
+              right: Dimensions.width20),
+          decoration: BoxDecoration(
+            color: AppColors.buttonBackgroundColor,
+            borderRadius: BorderRadius.only(
+              topRight: Radius.circular(Dimensions.radius20 * 2),
+              topLeft: Radius.circular(Dimensions.radius20 * 2),
             ),
-            Container(
-              padding: EdgeInsets.only(
-                  top: Dimensions.height30,
-                  bottom: Dimensions.height30,
-                  left: Dimensions.width20,
-                  right: Dimensions.width20),
-              child: BigText(
-                text: "\$10 | Tambahkan keranjang",
-                color: Colors.white,
+          ),
+          child: Row(
+            children: [
+              Container(
+                decoration: BoxDecoration(
+                    borderRadius: BorderRadius.circular(Dimensions.radius20),
+                    color: Colors.white),
+                child: Row(
+                  children: [
+                    GestureDetector(
+                      onTap: () {
+                        popularProduct.setQuantity(false);
+                      },
+                      child: Icon(
+                        Icons.remove,
+                        color: AppColors.signColor,
+                      ),
+                    ),
+                    SizedBox(
+                      width: Dimensions.width10 / 2,
+                    ),
+                    BigText(text: popularProduct.inCartItems.toString()),
+                    SizedBox(
+                      width: Dimensions.width10 / 2,
+                    ),
+                    GestureDetector(
+                      onTap: () {
+                        popularProduct.setQuantity(true);
+                      },
+                      child: Icon(
+                        Icons.add,
+                        color: AppColors.signColor,
+                      ),
+                    ),
+                  ],
+                ),
               ),
-              decoration: BoxDecoration(
-                  borderRadius: BorderRadius.circular(Dimensions.radius20),
-                  color: AppColors.mainColor),
-            )
-          ],
-        ),
-      ),
+              GestureDetector(
+                  onTap: () {
+                    popularProduct.addItem(product);
+                  },
+                child: Container(
+                  padding: EdgeInsets.only(
+                      top: Dimensions.height30,
+                      bottom: Dimensions.height30,
+                      left: Dimensions.width10,
+                      right: Dimensions.width10),
+                  
+                    child: BigText(
+                      text: "\$ ${product.price!} | Tambahkan ke keranjang",
+                      color: Colors.white,
+                    ),
+                  
+                  decoration: BoxDecoration(
+                      borderRadius: BorderRadius.circular(Dimensions.radius20),
+                      color: AppColors.mainColor),
+                ),
+              )
+            ],
+          ),
+        );
+      }),
     );
   }
 }

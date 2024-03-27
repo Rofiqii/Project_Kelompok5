@@ -24,16 +24,27 @@ class ApiClient extends GetConnect implements GetxService {
     };
   }
 
-  Future<Response> getData(String uri, dynamic body) async {
-    print(body.toString());
+  Future<Response> getData(String uri) async {
+    // print(body.toString());
     try {
-      Response response = await post(uri, body, headers: _mainHeaders);
+      Response response = await get(uri);
       print(response.toString());
       return response;
     } catch (e) {
       return Response(statusCode: 1, statusText: e.toString());
     }
   }
+
+  // Future<Response> getData(String uri, dynamic body) async {
+  //   print(body.toString());
+  //   try {
+  //     Response response = await post(uri, body, headers: _mainHeaders);
+  //     print(response.toString());
+  //     return response;
+  //   } catch (e) {
+  //     return Response(statusCode: 1, statusText: e.toString());
+  //   }
+  // }
 
   Future<Response> postData(String uri, dynamic body) async {
     print(body.toString());
