@@ -88,7 +88,7 @@ class CartPage extends StatelessWidget {
                                           .indexOf(_cartList[index].product!);
                                   if (popularIndex >= 0) {
                                     Get.toNamed(RouteHelper.getPopularFood(
-                                        popularIndex));
+                                        popularIndex,"cartpage"));
                                   } else {
                                     var recommendedIndex =
                                         Get.find<RecommendedProductController>()
