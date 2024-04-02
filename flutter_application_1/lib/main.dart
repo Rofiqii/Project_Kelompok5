@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_application_1/auth/sign_up_page.dart';
+import 'package:flutter_application_1/controllers/cart_controller.dart';
 import 'package:flutter_application_1/controllers/popular_product_controller.dart';
 import 'package:flutter_application_1/controllers/recommended_product_controller.dart';
 import 'package:flutter_application_1/pages/food/popular_food_detail.dart';
@@ -25,17 +26,22 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     Get.find<RecommendedProductController>().getRecommendedProductList();
     Get.find<PopularProductController>().getPopularProductList();
-    return GetMaterialApp(
-      debugShowCheckedModeBanner: false,
-      title: 'Flutter Demo',
-      // theme: ThemeData(primarySwatch: Colors.blue
-      //     // colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
-      //     // useMaterial3: true,
-      //     ),
-      // home: HomePage(),
-      initialRoute: RouteHelper.getSplashPage(),
-      getPages: RouteHelper.routes,
-    );
+    Get.find<CartController>().getCartData();
+    return GetBuilder<PopularProductController>(builder: (_) {
+      return GetBuilder<RecommendedProductController>(builder: (_) {
+        return GetMaterialApp(
+          debugShowCheckedModeBanner: false,
+          title: 'Flutter Demo',
+          // theme: ThemeData(primarySwatch: Colors.blue
+          //     // colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
+          //     // useMaterial3: true,
+          //     ),
+          // home: HomePage(),
+          initialRoute: RouteHelper.getInitial(),
+          getPages: RouteHelper.routes,
+        );
+      });
+    });
   }
 }
 
