@@ -62,7 +62,7 @@ class PopularFoodDetail extends StatelessWidget {
               children: [
                 GestureDetector(
                     onTap: () {
-                      if (page=="cartpage") {
+                      if (page == "cartpage") {
                         Get.toNamed(RouteHelper.getCartPage());
                       } else {
                         Get.toNamed(RouteHelper.getInitial());
@@ -214,7 +214,7 @@ class PopularFoodDetail extends StatelessWidget {
                       left: Dimensions.width10,
                       right: Dimensions.width10),
                   child: BigText(
-                    text: "\$ ${product.price!} | Tambahkan ke keranjang",
+                    text: "\$ ${product.price!} | Tambahkan ",
                     color: Colors.white,
                   ),
                   decoration: BoxDecoration(

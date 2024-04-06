@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/cupertino.dart';
 import 'package:flutter_application_1/pages/home/food_page_body.dart';
+import 'package:flutter_application_1/pages/home/home_page.dart';
 import 'package:flutter_application_1/utils/colors.dart';
 import 'package:flutter_application_1/utils/dimensions.dart';
 import 'package:flutter_application_1/widgets/big_text.dart';
@@ -66,9 +68,10 @@ class _MainFoodPageState extends State<MainFoodPage> {
           ),
           //showing the body
           Expanded(
-              child: SingleChildScrollView(
-            child: FoodPageBody(),
-          ))
+            child: SingleChildScrollView(
+              child: FoodPageBody(),
+            ),
+          ),
         ],
       ),
     );

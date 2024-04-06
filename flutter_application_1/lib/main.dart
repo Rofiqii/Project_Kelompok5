@@ -24,8 +24,8 @@ class MyApp extends StatelessWidget {
   // This widget is the root of your application.
   @override
   Widget build(BuildContext context) {
-    Get.find<RecommendedProductController>().getRecommendedProductList();
-    Get.find<PopularProductController>().getPopularProductList();
+    // Get.find<RecommendedProductController>().getRecommendedProductList();
+    // Get.find<PopularProductController>().getPopularProductList();
     Get.find<CartController>().getCartData();
     return GetBuilder<PopularProductController>(builder: (_) {
       return GetBuilder<RecommendedProductController>(builder: (_) {
@@ -37,7 +37,7 @@ class MyApp extends StatelessWidget {
           //     // useMaterial3: true,
           //     ),
           // home: HomePage(),
-          initialRoute: RouteHelper.getInitial(),
+          initialRoute: RouteHelper.getSplashPage(),
           getPages: RouteHelper.routes,
         );
       });
