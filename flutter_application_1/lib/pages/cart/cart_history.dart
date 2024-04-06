@@ -1,6 +1,10 @@
+import 'dart:convert';
+
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_application_1/controllers/cart_controller.dart';
+import 'package:flutter_application_1/models/cart_model.dart';
+import 'package:flutter_application_1/routes/route_helper.dart';
 import 'package:flutter_application_1/utils/app_constants.dart';
 import 'package:flutter_application_1/utils/colors.dart';
 import 'package:flutter_application_1/utils/dimensions.dart';
@@ -17,6 +21,7 @@ class CartHistory extends StatelessWidget {
   Widget build(BuildContext context) {
     var getCartHistoryList =
         Get.find<CartController>().getCartHistoryList().reversed.toList();
+
     Map<String, int> cartItemsPerOrder = Map();
 
     for (int i = 0; i < getCartHistoryList.length; i++) {
@@ -28,13 +33,15 @@ class CartHistory extends StatelessWidget {
       }
     }
 
-    List<int> cartOrderTimeToList() {
+    List<int> cartItemsPerOrderToList() {
       return cartItemsPerOrder.entries.map((e) => e.value).toList();
     }
 
-    List<int> orderTimes = cartOrderTimeToList();
+    List<String> cartOrderTimeToList() {
+      return cartItemsPerOrder.entries.map((e) => e.key).toList();
+    }
 
-    List<int> itemsPerOrder = cartOrderTimeToList();
+    List<int> itemsPerOrder = cartItemsPerOrderToList();
 
     var listCounter = 0;
 
@@ -149,21 +156,48 @@ class CartHistory extends StatelessWidget {
                                               " Pesanan",
                                           color: AppColors.titleColor,
                                         ),
-                                        Container(
-                                          padding: EdgeInsets.symmetric(
-                                              horizontal: Dimensions.width10,
-                                              vertical:
-                                                  Dimensions.height10 / 2),
-                                          decoration: BoxDecoration(
-                                            borderRadius: BorderRadius.circular(
-                                                Dimensions.radius15 / 3),
-                                            border: Border.all(
-                                                width: 1,
-                                                color: AppColors.mainColor),
-                                          ),
-                                          child: SmallText(
-                                            text: "satu lagi",
-                                            color: AppColors.mainColor,
+                                        GestureDetector(
+                                          onTap: () {
+                                            var orderTime =
+                                                cartOrderTimeToList();
+                                            Map<int, CartModel> moreOrder = {};
+                                            for (int j = 0;
+                                                j < getCartHistoryList.length;
+                                                j++) {
+                                              if (getCartHistoryList[j].time ==
+                                                  orderTime[i]) {
+                                                moreOrder.putIfAbsent(
+                                                    getCartHistoryList[j].id!,
+                                                    () => CartModel.fromJson(
+                                                        jsonDecode(jsonEncode(
+                                                            getCartHistoryList[
+                                                                j]))));
+                                              }
+                                            }
+                                            Get.find<CartController>()
+                                                .setItems = moreOrder;
+                                            Get.find<CartController>()
+                                                .addToCartList();
+                                            Get.toNamed(
+                                                RouteHelper.getCartPage());
+                                          },
+                                          child: Container(
+                                            padding: EdgeInsets.symmetric(
+                                                horizontal: Dimensions.width10,
+                                                vertical:
+                                                    Dimensions.height10 / 2),
+                                            decoration: BoxDecoration(
+                                              borderRadius:
+                                                  BorderRadius.circular(
+                                                      Dimensions.radius15 / 3),
+                                              border: Border.all(
+                                                  width: 1,
+                                                  color: AppColors.mainColor),
+                                            ),
+                                            child: SmallText(
+                                              text: "satu lagi",
+                                              color: AppColors.mainColor,
+                                            ),
                                           ),
                                         )
                                       ],

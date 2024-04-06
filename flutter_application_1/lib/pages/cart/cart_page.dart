@@ -29,11 +29,13 @@ class CartPage extends StatelessWidget {
             child: Row(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
-                AppIcon(
-                  icon: Icons.arrow_back_ios_rounded,
-                  iconColor: Colors.white,
-                  backgroundColor: AppColors.mainColor,
-                  iconSize: Dimensions.iconSize24,
+                GestureDetector(
+                  child: AppIcon(
+                    icon: Icons.arrow_back_ios_rounded,
+                    iconColor: Colors.white,
+                    backgroundColor: AppColors.mainColor,
+                    iconSize: Dimensions.iconSize24,
+                  ),
                 ),
                 SizedBox(
                   width: Dimensions.width20 * 5,
@@ -94,8 +96,18 @@ class CartPage extends StatelessWidget {
                                         Get.find<RecommendedProductController>()
                                             .recommendedProductList
                                             .indexOf(_cartList[index].product!);
-                                    Get.toNamed(RouteHelper.getRecommendedFood(
-                                        recommendedIndex, "cartpage"));
+                                    if (recommendedIndex < 0) {
+                                      Get.snackbar(
+                                        "Riwayat pembelian",
+                                        "Review produk tidak tersedia untuk riwayat produk",
+                                        backgroundColor: AppColors.mainColor,
+                                        colorText: Colors.white,
+                                      );
+                                    } else {
+                                      Get.toNamed(
+                                          RouteHelper.getRecommendedFood(
+                                              recommendedIndex, "cartpage"));
+                                    }
                                   }
                                 },
                                 child: Container(
@@ -244,7 +256,8 @@ class CartPage extends StatelessWidget {
                     SizedBox(
                       width: Dimensions.width10 / 2,
                     ),
-                    BigText(text: "\Rp. "+cartController.totalAmount.toString()),
+                    BigText(
+                        text: "\Rp. " + cartController.totalAmount.toString()),
                     SizedBox(
                       width: Dimensions.width10 / 2,
                     ),
@@ -254,6 +267,7 @@ class CartPage extends StatelessWidget {
               GestureDetector(
                 onTap: () {
                   // popularProduct.addItem(product);
+                  cartController.addToHistory();
                 },
                 child: Container(
                   padding: EdgeInsets.only(
