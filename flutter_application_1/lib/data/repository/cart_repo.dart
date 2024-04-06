@@ -69,7 +69,7 @@ class CartRepo {
         getCartHistoryList().length.toString());
     for (int j = 0; j < getCartHistoryList().length; j++) {
       print("the time for the order is " +
-          getCartHistoryList()[i].time.toString());
+          getCartHistoryList()[j].time.toString());
     }
   }
 
