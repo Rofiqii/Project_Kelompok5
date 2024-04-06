@@ -22,7 +22,7 @@ class RouteHelper {
   static String getPopularFood(int pageId, String page) =>
       '$popularFood?pageId=$pageId&page=$page';
   static String getRecommendedFood(int pageId, String page) =>
-      '$recommendedFood?pageid=$pageId&page=$page';
+      '$recommendedFood?pageId=$pageId&page=$page';
   static String getCartPage() => '$cartPage';
 
   static List<GetPage> routes = [
