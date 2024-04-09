@@ -2,6 +2,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
+import 'package:flutter_application_1/auth/sign_in_page.dart';
 import 'package:flutter_application_1/base/custom_loader.dart';
 import 'package:flutter_application_1/base/show_custom_snackbar.dart';
 import 'package:flutter_application_1/controllers/auth_controller.dart';
@@ -48,7 +49,7 @@ class SignUpPage extends StatelessWidget {
         showCustomSnackBar("Password tidak boleh kurang dari 6 huruf",
             title: "Password terlalu pendek");
       } else {
-        showCustomSnackBar("Pendaftaran berhasil", title: "Berhasil");
+        // showCustomSnackBar("Pendaftaran berhasil", title: "Berhasil");
         SignUpBody signUpBody = SignUpBody(
             name: name, phone: phone, email: email, password: password);
         //calling method from repo for post method,
@@ -100,10 +101,11 @@ class SignUpPage extends StatelessWidget {
                     ),
                     //pass
                     AppTextField(
-                        textController: passwordController,
-                        hintText: "Kata Sandi",
-                        icon: Icons.password, 
-                        isObscure: true,),
+                      textController: passwordController,
+                      hintText: "Kata Sandi",
+                      icon: Icons.password,
+                      isObscure: true,
+                    ),
                     SizedBox(
                       height: Dimensions.height20,
                     ),
@@ -130,7 +132,7 @@ class SignUpPage extends StatelessWidget {
                       },
                       child: Container(
                         width: Dimensions.screenWidth / 2,
-                        height: Dimensions.screenWidth / 13,
+                        height: Dimensions.screenWidth / 9,
                         decoration: BoxDecoration(
                             borderRadius:
                                 BorderRadius.circular(Dimensions.radius30),
@@ -138,7 +140,7 @@ class SignUpPage extends StatelessWidget {
                         child: Center(
                           child: BigText(
                             text: "Daftar",
-                            size: Dimensions.font20 + Dimensions.font20 / 2,
+                            size: Dimensions.font16 + Dimensions.font20 / 2,
                             color: Colors.white,
                           ),
                         ),
@@ -151,7 +153,8 @@ class SignUpPage extends StatelessWidget {
                     RichText(
                         text: TextSpan(
                             recognizer: TapGestureRecognizer()
-                              ..onTap = () => Get.back(),
+                              ..onTap = () => Get.to(() => const SignInPage(),
+                                  transition: Transition.fade),
                             text: "Sudah memiliki akun?",
                             style: TextStyle(
                                 color: Colors.grey[500],
@@ -161,6 +164,7 @@ class SignUpPage extends StatelessWidget {
                     ),
                     //sign up options
                     RichText(
+                        textAlign: TextAlign.center,
                         text: TextSpan(
                             recognizer: TapGestureRecognizer()
                               ..onTap = () => Get.back(),
@@ -168,7 +172,7 @@ class SignUpPage extends StatelessWidget {
                                 "Masuk dengan menggunakan beberapa metode dibawah",
                             style: TextStyle(
                                 color: Colors.grey[500],
-                                fontSize: Dimensions.font20))),
+                                fontSize: Dimensions.font16))),
                     Wrap(
                       children: List.generate(
                           3,
