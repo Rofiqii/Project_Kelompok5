@@ -1,5 +1,6 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_application_1/pages/account/account_page.dart';
 import 'package:flutter_application_1/pages/cart/cart_history.dart';
 import 'package:flutter_application_1/pages/home/main_food_page.dart';
 import 'package:flutter_application_1/utils/colors.dart';
@@ -80,7 +81,7 @@ class _HomePageState extends State<HomePage> {
       MainFoodPage(),
       Container(child: Center(child: Text("Halaman selanjutnya1"))),
       CartHistory(),
-      Container(child: Center(child: Text("Halaman selanjutnya3"))),
+      AccountPage(),
     ];
   }
 
