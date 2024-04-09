@@ -1,11 +1,14 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/cupertino.dart';
+import 'package:flutter_application_1/controllers/popular_product_controller.dart';
+import 'package:flutter_application_1/controllers/recommended_product_controller.dart';
 import 'package:flutter_application_1/pages/home/food_page_body.dart';
 import 'package:flutter_application_1/pages/home/home_page.dart';
 import 'package:flutter_application_1/utils/colors.dart';
 import 'package:flutter_application_1/utils/dimensions.dart';
 import 'package:flutter_application_1/widgets/big_text.dart';
 import 'package:flutter_application_1/widgets/small_text.dart';
+import 'package:get/get.dart';
 // import 'package:get/get.dart';
 
 class MainFoodPage extends StatefulWidget {
@@ -15,12 +18,16 @@ class MainFoodPage extends StatefulWidget {
   State<MainFoodPage> createState() => _MainFoodPageState();
 }
 
+Future<void> _loadResource() async {
+    await Get.find<PopularProductController>().getPopularProductList();
+    await Get.find<RecommendedProductController>().getRecommendedProductList();
+  }
+
 class _MainFoodPageState extends State<MainFoodPage> {
   @override
   Widget build(BuildContext context) {
     print("current height is " + MediaQuery.of(context).size.height.toString());
-    return Scaffold(
-      body: Column(
+    return RefreshIndicator(child: Column(
         children: [
           //showing the header
           Container(
@@ -73,7 +80,7 @@ class _MainFoodPageState extends State<MainFoodPage> {
             ),
           ),
         ],
-      ),
-    );
+      )
+, onRefresh: _loadResource);
   }
 }
