@@ -8,22 +8,24 @@ class CartRepo {
   final SharedPreferences sharedPreferences;
   CartRepo({required this.sharedPreferences});
 //  convert objects to string because sharedpreferences only accepts string
+  
   List<String> cart = [];
   List<String> cartHistory = [];
+
   void addToCartList(List<CartModel> cartList) {
-    //  sharedPreferences.remove(AppConstants.CART_LIST);
-    //  sharedPreferences.remove(AppConstants.CART_HISTORY_LIST);
+    // sharedPreferences.remove(AppConstants.CART_LIST);
+    // sharedPreferences.remove(AppConstants.CART_HISTORY_LIST);
     var time = DateTime.now().toString();
     cart = [];
-    //convert object to json using jsonEncode to convert object to string
+    //convert object to json using jsonEncode to convert object into string
     cartList.forEach((element) {
-      element.time = time;
-      return cart.add(jsonEncode(element));
+      // element.time = time;
+      cart.add(jsonEncode(element));
     });
 
     sharedPreferences.setStringList(AppConstants.CART_LIST, cart);
-    // print(sharedPreferences.getStringList(AppConstants.CART_LIST));
-    // getCartList();
+    print(sharedPreferences.getStringList(AppConstants.CART_LIST));
+    getCartList();
   }
 
   List<CartModel> getCartList() {
@@ -36,7 +38,7 @@ class CartRepo {
     List<CartModel> cartList = [];
     //if you have string or json you need to decode using jsonDecode to convert string to object
     carts.forEach(
-        (element) => cartList.add(CartModel.fromJson(jsonDecode(element))));
+        (element) => CartModel.fromJson(jsonDecode(element)));
 
     return cartList;
   }

@@ -70,14 +70,12 @@ class ProductModel {
     return {
       "id": this.id,
       "name": this.name,
-      "description" : this.description,
       "price": this.price,
-      "stars": this.stars,
       "img": this.img,
       "location": this.location,
       "createdAt": this.createdAt,
       "updatedAt": this.updatedAt,
-      "typeId": this.typeId,
+      "typeId": this.typeId
     };
   }
 }
