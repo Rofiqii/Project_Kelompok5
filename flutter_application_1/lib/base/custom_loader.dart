@@ -9,16 +9,16 @@ class CustomLoader extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    print("Printing loading state"+Get.find<AuthController>().isLoading.toString());
+    // print("Printing loading state"+Get.find<AuthController>().isLoading.toString());
     return Center(
       child: Container(
-        height: Dimensions.height20 * 5,
-        width: Dimensions.height20 * 5,
+        height: Dimensions.height20 * 2,
+        width: Dimensions.height20 * 2,
         decoration: BoxDecoration(
-          borderRadius: BorderRadius.circular(Dimensions.height20 * 5 / 2),
+          borderRadius: BorderRadius.circular(Dimensions.height20 * 2 / 2),
         ),
         alignment: Alignment.center,
-        child: CircularProgressIndicator(color: Colors.white,),
+        child: CircularProgressIndicator(color: Colors.blue,),
       ),
     );
   }
