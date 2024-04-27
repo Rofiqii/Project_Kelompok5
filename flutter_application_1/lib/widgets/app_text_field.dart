@@ -22,7 +22,7 @@ class AppTextField extends StatelessWidget {
           left: Dimensions.height20, right: Dimensions.height20),
       decoration: BoxDecoration(
           color: Colors.white,
-          borderRadius: BorderRadius.circular(Dimensions.radius30),
+          borderRadius: BorderRadius.circular(Dimensions.radius15),
           boxShadow: [
             BoxShadow(
                 blurRadius: 3,
@@ -40,14 +40,14 @@ class AppTextField extends StatelessWidget {
           prefixIcon: Icon(icon, color: AppColors.yellowColor),
           //focusedBorder
           focusedBorder: OutlineInputBorder(
-              borderRadius: BorderRadius.circular(Dimensions.radius30),
+              borderRadius: BorderRadius.circular(Dimensions.radius15),
               borderSide: BorderSide(
                 width: 1.0,
                 color: Colors.white,
               )),
           //enabledBorder
           enabledBorder: OutlineInputBorder(
-            borderRadius: BorderRadius.circular(Dimensions.radius30),
+            borderRadius: BorderRadius.circular(Dimensions.radius15),
           ),
           //border
         ),

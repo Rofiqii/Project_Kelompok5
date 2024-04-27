@@ -140,7 +140,7 @@ class _FoodPageBodyState extends State<FoodPageBody> {
                                 image: DecorationImage(
                                   fit: BoxFit.cover,
                                   image: NetworkImage(
-                                      AppConstants.BASE_URL_MEIYI +
+                                      AppConstants.BASE_URL +
                                           AppConstants.UPLOAD_URL +
                                           recommendedProduct
                                               .recommendedProductList[index]
@@ -263,7 +263,7 @@ class _FoodPageBodyState extends State<FoodPageBody> {
                 color: index.isEven ? Color(0xFF69c5df) : Color(0xFF9294cc),
                 image: DecorationImage(
                   fit: BoxFit.cover,
-                  image: NetworkImage(AppConstants.BASE_URL_MEIYI +
+                  image: NetworkImage(AppConstants.BASE_URL +
                       AppConstants.UPLOAD_URL +
                       popularProduct.img!),
                 ),

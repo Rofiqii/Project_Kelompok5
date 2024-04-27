@@ -30,6 +30,8 @@ class PopularProductController extends GetxController {
       update();
     } else {
       print("failed to get products");
+      print(response.statusCode);
+      print(response.statusText);
       print(_popularProductList);
     }
   }
@@ -79,7 +81,7 @@ class PopularProductController extends GetxController {
     exist = _cart.existInCart(product);
     //if exist
     //gettin from storage _inCartItems=3
-    print("exist or not popular controller?" + exist.toString());
+    // print("exist or not popular controller?" + exist.toString());
     if (exist) {
       _inCartItems = _cart.getQuantity(product);
     }

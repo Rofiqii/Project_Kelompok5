@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_application_1/auth/sign_in_page.dart';
 import 'package:flutter_application_1/auth/sign_up_page.dart';
 import 'package:flutter_application_1/controllers/cart_controller.dart';
 import 'package:flutter_application_1/controllers/popular_product_controller.dart';
@@ -36,7 +37,7 @@ class MyApp extends StatelessWidget {
           //     // colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
           //     // useMaterial3: true,
           //     ),
-          // home: HomePage(),
+          // home: SignInPage(),
           initialRoute: RouteHelper.getSplashPage(),
           getPages: RouteHelper.routes,
         );

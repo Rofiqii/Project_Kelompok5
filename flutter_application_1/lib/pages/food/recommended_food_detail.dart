@@ -120,7 +120,7 @@ class RecommendedFoodDetail extends StatelessWidget {
             expandedHeight: 300,
             flexibleSpace: FlexibleSpaceBar(
               background: Image.network(
-                AppConstants.BASE_URL_MEIYI +
+                AppConstants.BASE_URL +
                     AppConstants.UPLOAD_URL +
                     product.img!,
                 width: double.maxFinite,

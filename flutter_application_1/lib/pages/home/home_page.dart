@@ -1,5 +1,6 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_application_1/auth/sign_in_page.dart';
 import 'package:flutter_application_1/pages/account/account_page.dart';
 import 'package:flutter_application_1/pages/cart/cart_history.dart';
 import 'package:flutter_application_1/pages/home/main_food_page.dart';
@@ -20,8 +21,8 @@ class _HomePageState extends State<HomePage> {
   List pages = [
     MainFoodPage(),
     Container(child: Center(child: Text("Halaman selanjutnya1"))),
-    Container(child: Center(child: Text("Halaman selanjutnya 2"))),
-    Container(child: Center(child: Text("Halaman selanjutnya3"))),
+    CartHistory(),
+    AccountPage(),
   ];
 
   void onTapNav(int index) {
@@ -79,7 +80,7 @@ class _HomePageState extends State<HomePage> {
   List<Widget> _buildScreens() {
     return [
       MainFoodPage(),
-      Container(child: Center(child: Text("Halaman selanjutnya1"))),
+      SignInPage(),
       CartHistory(),
       AccountPage(),
     ];

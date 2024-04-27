@@ -7,6 +7,7 @@ import 'package:flutter_application_1/base/custom_loader.dart';
 import 'package:flutter_application_1/base/show_custom_snackbar.dart';
 import 'package:flutter_application_1/controllers/auth_controller.dart';
 import 'package:flutter_application_1/models/signup_body_model.dart';
+import 'package:flutter_application_1/routes/route_helper.dart';
 import 'package:flutter_application_1/utils/colors.dart';
 import 'package:flutter_application_1/utils/dimensions.dart';
 import 'package:flutter_application_1/widgets/app_text_field.dart';
@@ -26,12 +27,12 @@ class SignUpPage extends StatelessWidget {
 
     void _registration(AuthController authController) {
       // var authController = Get.find<AuthController>();
-      String name = nameController.text.trim();
+      String f_name = nameController.text.trim();
       String phone = phoneController.text.trim();
       String email = emailController.text.trim();
       String password = passwordController.text.trim();
 
-      if (name.isEmpty) {
+      if (f_name.isEmpty) {
         showCustomSnackBar("Kolom nama tidak boleh kosong", title: "Nama");
       } else if (phone.isEmpty) {
         showCustomSnackBar("Kolom nomor telepon tidak boleh kosong",
@@ -51,17 +52,20 @@ class SignUpPage extends StatelessWidget {
       } else {
         // showCustomSnackBar("Pendaftaran berhasil", title: "Berhasil");
         SignUpBody signUpBody = SignUpBody(
-            name: name, phone: phone, email: email, password: password);
+            f_name: f_name, phone: phone, email: email, password: password);
         //calling method from repo for post method,
         //then goin to api as response to repo,
         //then if its true you get response update from auth controller.
         authController.registration(signUpBody).then((status) {
           if (status.isSuccess) {
             print("Registrasi berhasil");
-            print(status.message + "succe");
+            print(signUpBody.toJson());
+            Get.offNamed(RouteHelper.getInitial());
+            // Get.toNamed(RouteHelper.getSignInPage());
           } else {
             showCustomSnackBar(status.message);
             print(status.message + "fail");
+            print(signUpBody.toJson());
           }
           //9:20:23
         });
@@ -193,4 +197,3 @@ class SignUpPage extends StatelessWidget {
     );
   }
 }
-//9:01:34

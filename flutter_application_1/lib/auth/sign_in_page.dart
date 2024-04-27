@@ -20,13 +20,9 @@ class SignInPage extends StatelessWidget {
   Widget build(BuildContext context) {
     var emailController = TextEditingController();
     var passwordController = TextEditingController();
-    var nameController = TextEditingController();
-    var phoneController = TextEditingController();
 
     void _login(AuthController authController) {
       // var authController = Get.find<AuthController>();
-      String name = nameController.text.trim();
-      String phone = phoneController.text.trim();
       String email = emailController.text.trim();
       String password = passwordController.text.trim();
 
@@ -45,12 +41,15 @@ class SignInPage extends StatelessWidget {
       } else {
         authController.login(email, password).then((status) {
           if (status.isSuccess) {
-            Get.toNamed(RouteHelper.getInitial());
+            Get.toNamed(RouteHelper.getCartPage());
             print("Login berhasil");
             print(status.message + "succe");
           } else {
             showCustomSnackBar(status.message);
-            print(status.message + "fail");
+            // print(error);
+            //print(status.message + "fail");
+            
+            // print(email +" " + password.toString());
           }
         });
       }

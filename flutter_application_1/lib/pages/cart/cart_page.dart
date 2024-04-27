@@ -2,6 +2,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 import 'package:flutter_application_1/base/no_data_page.dart';
+import 'package:flutter_application_1/controllers/auth_controller.dart';
 import 'package:flutter_application_1/controllers/cart_controller.dart';
 import 'package:flutter_application_1/controllers/popular_product_controller.dart';
 import 'package:flutter_application_1/controllers/recommended_product_controller.dart';
@@ -127,12 +128,13 @@ class CartPage extends StatelessWidget {
                                           decoration: BoxDecoration(
                                               image: DecorationImage(
                                                   fit: BoxFit.cover,
-                                                  image: NetworkImage(AppConstants
-                                                          .BASE_URL_MEIYI +
-                                                      AppConstants.UPLOAD_URL +
-                                                      cartController
-                                                          .getItems[index]
-                                                          .img!)),
+                                                  image: NetworkImage(
+                                                      AppConstants.BASE_URL +
+                                                          AppConstants
+                                                              .UPLOAD_URL +
+                                                          cartController
+                                                              .getItems[index]
+                                                              .img!)),
                                               borderRadius:
                                                   BorderRadius.circular(
                                                       Dimensions.radius20),
@@ -247,6 +249,7 @@ class CartPage extends StatelessWidget {
                     ),
                   )
                 : NoDataPage(text: "Keranjangmu kosong!");
+            //
           })
         ],
       ),
@@ -296,7 +299,11 @@ class CartPage extends StatelessWidget {
                       GestureDetector(
                         onTap: () {
                           // popularProduct.addItem(product);
-                          cartController.addToHistory();
+                          if (Get.find<AuthController>().userLoggedIn()) {
+                            cartController.addToHistory();
+                          } else {
+                            Get.toNamed(RouteHelper.getSignInPage());
+                          }
                         },
                         child: Container(
                           padding: EdgeInsets.only(
