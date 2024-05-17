@@ -2,10 +2,14 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 import 'package:flutter_application_1/base/no_data_page.dart';
+import 'package:flutter_application_1/base/show_custom_snackbar.dart';
 import 'package:flutter_application_1/controllers/auth_controller.dart';
 import 'package:flutter_application_1/controllers/cart_controller.dart';
+import 'package:flutter_application_1/controllers/order_controller.dart';
 import 'package:flutter_application_1/controllers/popular_product_controller.dart';
 import 'package:flutter_application_1/controllers/recommended_product_controller.dart';
+import 'package:flutter_application_1/controllers/user_controller.dart';
+import 'package:flutter_application_1/models/place_order_model.dart';
 import 'package:flutter_application_1/pages/home/main_food_page.dart';
 import 'package:flutter_application_1/routes/route_helper.dart';
 import 'package:flutter_application_1/utils/app_constants.dart';
@@ -30,7 +34,7 @@ class CartPage extends StatelessWidget {
             right: Dimensions.width20,
             child: Row(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
-              children: [                
+              children: [
                 // SizedBox(
                 //   width: Dimensions.width20 * 5,
                 // ),
@@ -292,7 +296,20 @@ class CartPage extends StatelessWidget {
                         onTap: () {
                           // popularProduct.addItem(product);
                           if (Get.find<AuthController>().userLoggedIn()) {
-                            cartController.addToHistory();
+                            // cartController.addToHistory();
+                            print("logged in?");
+                            var cart = Get.find<CartController>().getItems;
+                            var user = Get.find<UserController>().userModel;
+                            PlaceOrderBody placeOrder = PlaceOrderBody(
+                                cart: cart,
+                                orderAmount: 100.0,
+                                orderNote: "orderNote Tes",
+                                contactPersonName: user!.name,
+                                contactPersonNumber: user!.phone
+                                );
+                            Get.find<OrderController>().placeOrder(
+                              placeOrder,
+                              _callback);
                           } else {
                             Get.toNamed(RouteHelper.getSignInPage());
                           }
@@ -318,5 +335,14 @@ class CartPage extends StatelessWidget {
                 : Container());
       }),
     );
+  }
+
+  void _callback(bool isSuccess, String message, String orderID) {
+    if (isSuccess) {
+      Get.offNamed(RouteHelper.getPaymentPage(
+          orderID, Get.find<UserController>().userModel!.id));
+    } else {
+      showCustomSnackBar(message);
+    }
   }
 }

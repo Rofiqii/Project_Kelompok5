@@ -6,6 +6,7 @@ import 'package:flutter_application_1/pages/food/popular_food_detail.dart';
 import 'package:flutter_application_1/pages/food/recommended_food_detail.dart';
 import 'package:flutter_application_1/pages/home/home_page.dart';
 import 'package:flutter_application_1/pages/home/main_food_page.dart';
+import 'package:flutter_application_1/pages/payment/order_success_page.dart';
 import 'package:flutter_application_1/pages/payment/payment_page.dart';
 import 'package:flutter_application_1/pages/splash/splash_page.dart';
 import 'package:get/get.dart';
@@ -29,8 +30,8 @@ class RouteHelper {
       '$recommendedFood?pageId=$pageId&page=$page';
   static String getCartPage() => '$cartPage';
   static String getSignInPage() => '$signIn';
-  static String getPaymentPage() => '$payment';
-  static String getOrderSuccessPage() => '$orderSuccess';
+  static String getPaymentPage(String id, int userID) => '$payment?id=$id&userID=$userID';
+  static String getOrderSuccessPage(String orderID, String status) => '$orderSuccess?id=$orderID&status=$status';
 
   static List<GetPage> routes = [
     GetPage(name: splashPage, page: () => SplashScreen()),
@@ -73,8 +74,12 @@ class RouteHelper {
         page: () => PaymentPage(
             orderModel: OrderModel(
                 id: int.parse(Get.parameters['id']!),
-                userId: int.parse(Get.parameters["user"]!)
+                userId: int.parse(Get.parameters["userID"]!)
                 // these two is required in orderModel
-                )))
+                )
+                )),
+                GetPage(name: orderSuccess, page: ()=> OrderSuccessPage(
+                  orderID:Get.parameters['id']!, status:Get.parameters["status"].toString().contains("success")?1:0,
+                ))
   ];
 }
