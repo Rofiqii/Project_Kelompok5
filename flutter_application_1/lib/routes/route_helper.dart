@@ -1,10 +1,12 @@
 import 'package:flutter_application_1/auth/sign_in_page.dart';
 import 'package:flutter_application_1/auth/sign_up_page.dart';
+import 'package:flutter_application_1/models/order_model.dart';
 import 'package:flutter_application_1/pages/cart/cart_page.dart';
 import 'package:flutter_application_1/pages/food/popular_food_detail.dart';
 import 'package:flutter_application_1/pages/food/recommended_food_detail.dart';
 import 'package:flutter_application_1/pages/home/home_page.dart';
 import 'package:flutter_application_1/pages/home/main_food_page.dart';
+import 'package:flutter_application_1/pages/payment/payment_page.dart';
 import 'package:flutter_application_1/pages/splash/splash_page.dart';
 import 'package:get/get.dart';
 
@@ -16,14 +18,19 @@ class RouteHelper {
   static const String signIn = "/sign-in";
   static const String cartPage = "/cart-page";
 
+  static const String payment = '/payment';
+  static const String orderSuccess = '/order-successful';
+
   static String getSplashPage() => '$splashPage';
   static String getInitial() => '$initial';
-  static String getSignInPage() => '$signIn';
   static String getPopularFood(int pageId, String page) =>
       '$popularFood?pageId=$pageId&page=$page';
   static String getRecommendedFood(int pageId, String page) =>
       '$recommendedFood?pageId=$pageId&page=$page';
   static String getCartPage() => '$cartPage';
+  static String getSignInPage() => '$signIn';
+  static String getPaymentPage() => '$payment';
+  static String getOrderSuccessPage() => '$orderSuccess';
 
   static List<GetPage> routes = [
     GetPage(name: splashPage, page: () => SplashScreen()),
@@ -60,6 +67,14 @@ class RouteHelper {
         page: () {
           return CartPage();
         },
-        transition: Transition.fadeIn)
+        transition: Transition.fadeIn),
+    GetPage(
+        name: payment,
+        page: () => PaymentPage(
+            orderModel: OrderModel(
+                id: int.parse(Get.parameters['id']!),
+                userId: int.parse(Get.parameters["user"]!)
+                // these two is required in orderModel
+                )))
   ];
 }
