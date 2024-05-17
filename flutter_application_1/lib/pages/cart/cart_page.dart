@@ -30,18 +30,10 @@ class CartPage extends StatelessWidget {
             right: Dimensions.width20,
             child: Row(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
-              children: [
-                GestureDetector(
-                  child: AppIcon(
-                    icon: Icons.arrow_back_ios_rounded,
-                    iconColor: Colors.white,
-                    backgroundColor: AppColors.mainColor,
-                    iconSize: Dimensions.iconSize24,
-                  ),
-                ),
-                SizedBox(
-                  width: Dimensions.width20 * 5,
-                ),
+              children: [                
+                // SizedBox(
+                //   width: Dimensions.width20 * 5,
+                // ),
                 GestureDetector(
                   onTap: () {
                     Get.toNamed(RouteHelper.getInitial());
@@ -312,7 +304,7 @@ class CartPage extends StatelessWidget {
                               left: Dimensions.width10,
                               right: Dimensions.width10),
                           child: BigText(
-                            text: "Beli",
+                            text: "Bayar",
                             color: Colors.white,
                           ),
                           decoration: BoxDecoration(

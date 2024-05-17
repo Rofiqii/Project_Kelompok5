@@ -209,7 +209,7 @@ class RecommendedFoodDetail extends StatelessWidget {
                         color: Colors.white),
                     child: Icon(
                       Icons.favorite_outlined,
-                      color: Colors.white,
+                      color: Colors.red,
                     ),
                   ),
                   GestureDetector(

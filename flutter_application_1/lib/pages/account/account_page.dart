@@ -96,19 +96,19 @@ class AccountPage extends StatelessWidget {
                                 SizedBox(
                                   height: Dimensions.height20,
                                 ),
-                                // address
-                                AccountWidget(
-                                    appIcon: AppIcon(
-                                      icon: Icons.location_on_rounded,
-                                      backgroundColor: AppColors.yellowColor,
-                                      iconColor: Colors.white,
-                                      iconSize: Dimensions.height10 * 5 / 2,
-                                      size: Dimensions.height10 * 5,
-                                    ),
-                                    bigText: BigText(text: "Isi alamat rumah")),
-                                SizedBox(
-                                  height: Dimensions.height20,
-                                ),
+                                // // address
+                                // AccountWidget(
+                                //     appIcon: AppIcon(
+                                //       icon: Icons.location_on_rounded,
+                                //       backgroundColor: AppColors.yellowColor,
+                                //       iconColor: Colors.white,
+                                //       iconSize: Dimensions.height10 * 5 / 2,
+                                //       size: Dimensions.height10 * 5,
+                                //     ),
+                                //     bigText: BigText(text: "Isi alamat rumah")),
+                                // SizedBox(
+                                //   height: Dimensions.height20,
+                                // ),
                                 // message
                                 AccountWidget(
                                     appIcon: AppIcon(
@@ -118,7 +118,7 @@ class AccountPage extends StatelessWidget {
                                       iconSize: Dimensions.height10 * 5 / 2,
                                       size: Dimensions.height10 * 5,
                                     ),
-                                    bigText: BigText(text: "Ahmed")),
+                                    bigText: BigText(text: "Pesan")),
                                 SizedBox(
                                   height: Dimensions.height20,
                                 ),
@@ -133,7 +133,7 @@ class AccountPage extends StatelessWidget {
                                           .clearCartHistory();
                                       Get.offNamed(RouteHelper.getSignInPage());
                                     } else {
-                                      print("you loggeed out");
+                                      print("you logged out");
                                     }
                                   },
                                   child: AccountWidget(

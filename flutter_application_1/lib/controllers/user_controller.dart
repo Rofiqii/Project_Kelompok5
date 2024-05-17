@@ -29,7 +29,7 @@ class UserController extends GetxController implements GetxService {
       print(response.statusText);
       print("authController above");
     }
-    _isLoading = false;
+    // _isLoading = false;
     //update for changes on front end
     update();
     return responseModel;

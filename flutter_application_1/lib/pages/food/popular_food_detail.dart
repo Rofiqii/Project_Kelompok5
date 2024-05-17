@@ -203,6 +203,9 @@ class PopularFoodDetail extends StatelessWidget {
                   ],
                 ),
               ),
+              SizedBox(
+                      width: Dimensions.width10 * 8 ,
+                    ),
               GestureDetector(
                 onTap: () {
                   popularProduct.addItem(product);
@@ -214,7 +217,7 @@ class PopularFoodDetail extends StatelessWidget {
                       left: Dimensions.width10,
                       right: Dimensions.width10),
                   child: BigText(
-                    text: "\$ ${product.price!} | Tambahkan ",
+                    text: "\$ ${product.price!} | Tambahkan",
                     color: Colors.white,
                   ),
                   decoration: BoxDecoration(
