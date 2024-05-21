@@ -4,6 +4,7 @@ import 'package:flutter_application_1/auth/sign_in_page.dart';
 import 'package:flutter_application_1/pages/account/account_page.dart';
 import 'package:flutter_application_1/pages/cart/cart_history.dart';
 import 'package:flutter_application_1/pages/home/main_food_page.dart';
+import 'package:flutter_application_1/pages/order/order_page.dart';
 import 'package:flutter_application_1/utils/colors.dart';
 import 'package:persistent_bottom_nav_bar/persistent-tab-view.dart';
 
@@ -17,10 +18,10 @@ class HomePage extends StatefulWidget {
 class _HomePageState extends State<HomePage> {
   int _selectedIndex = 0;
 
-  late PersistentTabController _controller;
+  // late PersistentTabController _controller;
   List pages = [
     MainFoodPage(),
-    Container(child: Center(child: Text("Halaman selanjutnya1"))),
+    OrderPage(),
     CartHistory(),
     AccountPage(),
   ];
@@ -35,7 +36,7 @@ class _HomePageState extends State<HomePage> {
   void initState() {
     super.initState();
 
-    _controller = PersistentTabController(initialIndex: 0);
+    // _controller = PersistentTabController(initialIndex: 0);
   }
 
   // @override
@@ -119,7 +120,7 @@ class _HomePageState extends State<HomePage> {
   Widget build(BuildContext context) {
     return PersistentTabView(
       context,
-      controller: _controller,
+      // controller: _controller,
       screens: _buildScreens(),
       items: _navBarsItems(),
       confineInSafeArea: true,

@@ -2,9 +2,9 @@ class OrderModel {
   late int id;
   late int userId;
   double? orderAmount;
-  String? orderStatus;
-
   String? paymentStatus;
+  // String? paymentMethod;
+  String? orderStatus;
   String? orderNote;
   String? createdAt;
   String? updatedAt;

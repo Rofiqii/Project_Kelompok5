@@ -20,10 +20,10 @@ class AppConstants {
   Orders
   */
   static const String PLACE_ORDER_URI = "/api/v1/customer/order/place";
-
+  static const String ORDER_LIST_URI = "/api/v1/customer/order/list";
   static const String TOKEN = "";
   static const String PHONE = "";
   static const String PASSWORD = "";
-  static const String CART_LIST = "Cart-list";
+  static const String CART_LIST = "cart-list";
   static const String CART_HISTORY_LIST = "cart-history-list";
 }
