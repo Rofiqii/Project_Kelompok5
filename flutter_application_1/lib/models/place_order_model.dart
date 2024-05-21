@@ -1,24 +1,30 @@
 import 'cart_model.dart';
 
 class PlaceOrderBody {
-   List<CartModel>? _cart;
+  List<CartModel>? _cart;
   late double _orderAmount;
   late String _orderNote;
   late String _contactPersonName;
   late String _contactPersonNumber;
+  late String _orderType;
+  late String _paymentMethod;
 
-  PlaceOrderBody(
-      {required List<CartModel> cart,
-        required double orderAmount,
-        required String orderNote,      
-        required String contactPersonName,
-        required String contactPersonNumber,
-      }){
+  PlaceOrderBody({
+    required List<CartModel> cart,
+    required double orderAmount,
+    required String orderNote,
+    required String contactPersonName,
+    required String contactPersonNumber,
+    required String orderType,
+    required String paymentMethod,
+  }) {
     this._cart = cart;
     this._orderAmount = orderAmount;
     this._orderNote = orderNote;
     this._contactPersonName = contactPersonName;
     this._contactPersonNumber = contactPersonNumber;
+    this._orderType = orderType;
+    this._paymentMethod = paymentMethod;
   }
 
   List<CartModel> get cart => _cart!;
@@ -54,5 +60,4 @@ class PlaceOrderBody {
     data['contact_person_number'] = this._contactPersonNumber;
     return data;
   }
-
 }
