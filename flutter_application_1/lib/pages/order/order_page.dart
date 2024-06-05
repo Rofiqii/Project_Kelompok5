@@ -1,6 +1,8 @@
 // import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_application_1/controllers/auth_controller.dart';
+import 'package:flutter_application_1/controllers/order_controller.dart';
+import 'package:flutter_application_1/pages/order/view_order.dart';
 import 'package:flutter_application_1/utils/colors.dart';
 import 'package:flutter_application_1/utils/dimensions.dart';
 import 'package:get/get.dart';
@@ -22,6 +24,7 @@ class _OrderPageState extends State<OrderPage> with TickerProviderStateMixin {
     _isLoggedIn = Get.find<AuthController>().userLoggedIn();
     if (_isLoggedIn) {
       _tabController = TabController(length: 2, vsync: this);
+      Get.find<OrderController>().getOrderList();
     }
   }
 
@@ -44,7 +47,7 @@ class _OrderPageState extends State<OrderPage> with TickerProviderStateMixin {
               labelColor: Theme.of(context).primaryColor,
               unselectedLabelColor: AppColors.yellowColor,
               controller: _tabController,
-              tabs: [
+              tabs: const [
                 Tab(
                   text: "Sekarang",
                 ),
@@ -55,10 +58,10 @@ class _OrderPageState extends State<OrderPage> with TickerProviderStateMixin {
             ),
           ),
           Expanded(
-              child: TabBarView(
-                  controller: _tabController,
-                  children: [
-                    Text("order1"), Text("order2")]))
+              child: TabBarView(controller: _tabController, children: const [
+            ViewOrder(isCurrent: true),
+            ViewOrder(isCurrent: false)
+          ]))
         ],
       ),
     );

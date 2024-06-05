@@ -325,7 +325,8 @@ class CartPage extends StatelessWidget {
                                                       ),
                                                       const PaymentOptionButton(
                                                           index: 1,
-                                                          icon: Icons.money,
+                                                          icon: Icons
+                                                              .paypal_sharp,
                                                           title:
                                                               "Pembayaran digital",
                                                           subTitle:
@@ -334,9 +335,25 @@ class CartPage extends StatelessWidget {
                                                         height:
                                                             Dimensions.height20,
                                                       ),
+                                                      // DeliveryOptions(
+                                                      //     value: "take away",
+                                                      //     title:
+                                                      //         "Bayar ke kasir",
+                                                      //     amount: 10000,
+                                                      //     isFree: false),
+
+                                                      SizedBox(
+                                                        height:
+                                                            Dimensions.height20,
+                                                      ),
+                                                      // DeliveryOptions(value: "delivery", title: "Pengiriman Makanan", amount: double.parse(Get.find<CartController>().totalAmount.toString()), isFree: false),
                                                       Text(
-                                                        "Pesan Pemesan",
+                                                        "Info Tambahan",
                                                         // style: Dimensions.font16,
+                                                      ),
+                                                      SizedBox(
+                                                        height:
+                                                            Dimensions.height20,
                                                       ),
                                                       AppTextField(
                                                         textController:
@@ -400,13 +417,16 @@ class CartPage extends StatelessWidget {
                                     ],
                                   ),
                                 ),
+                                SizedBox(
+                                  width: Dimensions.width10 * 10,
+                                ),
                                 GestureDetector(
                                   onTap: () {
                                     // popularProduct.addItem(product);
                                     if (Get.find<AuthController>()
                                         .userLoggedIn()) {
                                       // cartController.addToHistory();
-                                      print("logged in?");
+                                      print("logged in");
                                       var cart =
                                           Get.find<CartController>().getItems;
                                       var user =
@@ -417,16 +437,21 @@ class CartPage extends StatelessWidget {
                                               orderAmount: 100.0,
                                               orderNote:
                                                   orderController.foodNote,
-                                              contactPersonName: user!.name,
-                                              contactPersonNumber: user!.phone,
-                                              orderType: '',
-                                              paymentMethod:
-                                                  'cash_on_delivery');
-                                      print("Opsi pmbyrn " +
-                                          placeOrder.toJson()['order_type']);
+                                              // contactPersonName: user!.name,
+                                              // contactPersonNumber: user!.phone,
+                                              orderType:
+                                                  orderController.orderType,
+                                              paymentMethod: orderController
+                                                          .paymentIndex ==
+                                                      0
+                                                  ? 'cash_on_delivery'
+                                                  : 'digital_payment');
+                                      // print("Opsi pmbyrn " +
+                                      //     placeOrder.toJson()['payment_method']);
+                                      // return;
+                                      Get.find<OrderController>()
+                                          .placeOrder(placeOrder, _callback);
                                       return;
-                                      // Get.find<OrderController>()
-                                      //     .placeOrder(placeOrder, _callback);
                                     } else {
                                       Get.toNamed(RouteHelper.getSignInPage());
                                     }
@@ -451,8 +476,12 @@ class CartPage extends StatelessWidget {
       Get.find<CartController>()
           .removeCartSharedPreference(); //then removing items from the sharedpreference
       Get.find<CartController>().addToHistory();
-      Get.offNamed(RouteHelper.getPaymentPage(
-          orderID, Get.find<UserController>().userModel!.id));
+      if (Get.find<OrderController>().paymentIndex == 0) {
+        Get.offNamed(RouteHelper.getOrderSuccessPage(orderID, "success"));
+      } else {
+        Get.offNamed(RouteHelper.getPaymentPage(
+            orderID, Get.find<UserController>().userModel!.id));
+      }
     } else {
       showCustomSnackBar(message);
     }

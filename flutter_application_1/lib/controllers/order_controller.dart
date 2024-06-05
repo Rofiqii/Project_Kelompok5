@@ -12,12 +12,13 @@ class OrderController extends GetxController implements GetxService {
 
   bool get isLoading => _isLoading;
   List<OrderModel> get currentOrderList => _currentOrderList;
-  List<OrderModel> get runningOrderList => _historyOrderList;
+  List<OrderModel> get historyOrderList => _historyOrderList;
 
   int _paymentIndex = 0;
   int get paymentIndex => _paymentIndex;
 
-  String _orderType = "delivery";
+  String _orderType = "cash";
+  // String _orderType = "pemasakan";
   String get orderType => _orderType;
 
   String _foodNote = " ";
@@ -31,11 +32,17 @@ class OrderController extends GetxController implements GetxService {
       String orderID = response.body["order_id"].toString();
       callback(true, message, orderID);
     } else {
+      print(response.statusText);
+
+      // print(message+"1");
+      print(response.body);
+
       callback(false, response.statusText!, '-1');
     }
   }
 
   Future<void> getOrderList() async {
+    print("test1");
     _isLoading = true;
     Response response = await orderRepo.getOrderList();
     if (response.statusCode == 200) {
@@ -48,17 +55,22 @@ class OrderController extends GetxController implements GetxService {
             orderModel.orderStatus == 'processing' ||
             orderModel.orderStatus == 'handover' ||
             orderModel.orderStatus == 'accepted' ||
-            orderModel.orderStatus == 'picked_up') {
+            orderModel.orderStatus == 'picked_up'
+            ) {
           _currentOrderList.add(orderModel);
         } else {
           _historyOrderList.add(orderModel);
         }
       });
+      print("test3");
     } else {
+      print("test2");
       _historyOrderList = [];
       _currentOrderList = [];
     }
     _isLoading = false;
+    // print("length of orders1 " + _currentOrderList.length.toString());
+    // print("length of orders2 " + _historyOrderList.length.toString());
     update();
   }
 

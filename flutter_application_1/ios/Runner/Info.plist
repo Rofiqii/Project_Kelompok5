@@ -2,6 +2,15 @@
 <!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
 <plist version="1.0">
 <dict>
+
+	<!-- <key>NSLocationWhenInUseUsageDescription</key>
+	<string>Aplikasi membutuhkan izin lokasi</string>
+	<key>io.flutter.embedded_views_preview</key>
+	<string>YA</string>
+		<key>NSCameraUsageDescription</key>
+		<string>Aplikasi ini memerlukan izin kamera.</string>
+		<key>NSLocationWhenInUseUsageDescription</key>
+		<string>Aplikasi ini memerlukan izin lokasi</string> -->
 	<key>CFBundleDevelopmentRegion</key>
 	<string>$(DEVELOPMENT_LANGUAGE)</string>
 	<key>CFBundleDisplayName</key>

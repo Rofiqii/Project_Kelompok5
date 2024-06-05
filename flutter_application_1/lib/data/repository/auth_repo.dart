@@ -15,6 +15,8 @@ class AuthRepo {
   }
 
   bool userLoggedIn() {
+    print(
+        "token " + sharedPreferences.getString(AppConstants.TOKEN).toString());
     return sharedPreferences.containsKey(AppConstants.TOKEN);
   }
 

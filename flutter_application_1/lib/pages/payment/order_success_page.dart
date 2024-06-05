@@ -37,13 +37,13 @@ class OrderSuccessPage extends StatelessWidget {
               //         : "assets/image/warning.png",
               //     width: 100,
               //     height: 100),
-              SizedBox(height: Dimensions.height30),
+              SizedBox(height: Dimensions.height10),
 
               Text(
                 status == 1
-                    ? 'Kamu berhasil melakukan pemesanan makanan'
+                    ? 'Kamu berhasil melakukan pemesanan'
                     : 'Pesananmu gagal',
-                style: TextStyle(fontSize: Dimensions.font26),
+                style: TextStyle(fontSize: Dimensions.font20, fontWeight: FontWeight.bold),
               ),
               SizedBox(height: Dimensions.height10),
 
