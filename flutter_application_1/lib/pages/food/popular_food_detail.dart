@@ -134,7 +134,7 @@ class PopularFoodDetail extends StatelessWidget {
                   SizedBox(
                     height: Dimensions.height20,
                   ),
-                  BigText(text: "Introduce"),
+                  BigText(text: "Informasi"),
                   Expanded(
                       child: SingleChildScrollView(
                           child:
@@ -204,7 +204,7 @@ class PopularFoodDetail extends StatelessWidget {
                 ),
               ),
               SizedBox(
-                      width: Dimensions.width10 * 8 ,
+                      width: Dimensions.width10 * 4 ,
                     ),
               GestureDetector(
                 onTap: () {
@@ -217,7 +217,7 @@ class PopularFoodDetail extends StatelessWidget {
                       left: Dimensions.width10,
                       right: Dimensions.width10),
                   child: BigText(
-                    text: "\$ ${product.price!} | Tambahkan",
+                    text: "Rp.${product.price!} | Tambahkan",
                     color: Colors.white,
                   ),
                   decoration: BoxDecoration(
