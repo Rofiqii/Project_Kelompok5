@@ -323,14 +323,14 @@ class CartPage extends StatelessWidget {
                                                         height:
                                                             Dimensions.height10,
                                                       ),
-                                                      const PaymentOptionButton(
-                                                          index: 1,
-                                                          icon: Icons
-                                                              .paypal_sharp,
-                                                          title:
-                                                              "Pembayaran digital",
-                                                          subTitle:
-                                                              "Pembayaran dengan lebih mudah dan cepat"),
+                                                      // const PaymentOptionButton(
+                                                      //     index: 1,
+                                                      //     icon: Icons
+                                                      //         .paypal_sharp,
+                                                      //     title:
+                                                      //         "Pembayaran digital",
+                                                      //     subTitle:
+                                                      //         "Pembayaran dengan lebih mudah dan cepat"),
                                                       SizedBox(
                                                         height:
                                                             Dimensions.height20,
@@ -358,7 +358,7 @@ class CartPage extends StatelessWidget {
                                                       AppTextField(
                                                         textController:
                                                             _noteController,
-                                                        hintText: '',
+                                                        hintText: 'ketik disini',
                                                         icon: Icons.note,
                                                         maxLines: true,
                                                       ),

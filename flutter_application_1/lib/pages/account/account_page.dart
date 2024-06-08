@@ -1,6 +1,7 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
+import 'package:flutter_application_1/base/custom_app_bar.dart';
 import 'package:flutter_application_1/base/custom_loader.dart';
 import 'package:flutter_application_1/controllers/auth_controller.dart';
 import 'package:flutter_application_1/controllers/cart_controller.dart';
@@ -24,13 +25,8 @@ class AccountPage extends StatelessWidget {
       print("User telah login");
     }
     return Scaffold(
-      appBar: AppBar(
-        backgroundColor: AppColors.mainColor,
-        title: BigText(
-          text: "Profil",
-          size: 24,
-        ),
-      ),
+      appBar: CustomAppBar(title: "Profil"),
+      
       body: GetBuilder<UserController>(builder: (userController) {
         return _userLoggedIn
             ? (userController.isLoading

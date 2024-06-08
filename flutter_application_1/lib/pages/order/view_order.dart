@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter_application_1/controllers/order_controller.dart';
 import 'package:flutter_application_1/models/order_model.dart';
+import 'package:flutter_application_1/routes/styles.dart';
 import 'package:flutter_application_1/utils/colors.dart';
 import 'package:flutter_application_1/utils/dimensions.dart';
 import 'package:get/get.dart';
@@ -40,26 +41,34 @@ class ViewOrder extends StatelessWidget {
                                 mainAxisAlignment:
                                     MainAxisAlignment.spaceBetween,
                                 children: [
-                                  Text("#order ID       " +
-                                      orderList[index].id.toString()),
+                                  Row(
+                                    children: [
+                                      Text(
+                                        "#order ID",
+                                        style: robotoRegular.copyWith(
+                                            fontSize: Dimensions.font12),
+                                      ),
+                                      SizedBox(width: Dimensions.width10/2,),
+                                      Text('#${orderList[index].id.toString()}'),
+                                    ],
+                                  ),
                                   Column(
                                     crossAxisAlignment:
-                                        CrossAxisAlignment.start,
+                                        CrossAxisAlignment.end,
                                     children: [
                                       Container(
                                         decoration: BoxDecoration(
                                             color: AppColors.mainColor,
                                             borderRadius: BorderRadius.circular(
-                                                Dimensions.radius20 / 4)),
-                                        child: Container(
-                                          margin: EdgeInsets.all(
-                                              Dimensions.height10 / 2),
-                                          child: Text(
-                                            '${orderList[index].orderStatus}',
-                                            style:
-                                                TextStyle(color: Colors.white),
-                                          ),
-                                        ),
+                                                Dimensions.radius20 / 4)
+                                                ),
+                                        padding: EdgeInsets.symmetric(horizontal: Dimensions.width10,
+                                        vertical: Dimensions.width10/2),                                        
+                                          child: Text('${orderList[index].orderStatus}',
+                                            style: robotoMedium.copyWith(
+                                                  fontSize: Dimensions.font12,
+                                                  color: Theme.of(context).cardColor
+                                                )),                                          
                                       ),
                                       SizedBox(
                                         height: Dimensions.height10 / 2,
@@ -67,6 +76,8 @@ class ViewOrder extends StatelessWidget {
                                       InkWell(
                                         onTap: () => null,
                                         child: Container(
+                                          padding: EdgeInsets.symmetric(horizontal: Dimensions.width10,
+                                        vertical: Dimensions.width10/2), 
                                           decoration: BoxDecoration(
                                             color: Colors.white,
                                             borderRadius: BorderRadius.circular(
@@ -76,10 +87,20 @@ class ViewOrder extends StatelessWidget {
                                                 color: Theme.of(context)
                                                     .primaryColor),
                                           ),
-                                          child: Container(
-                                              margin: EdgeInsets.all(
-                                                  Dimensions.height10 / 2),
-                                              child: Text("Track order")),
+                                          child: Row(
+                                            children: [
+                                              Image.asset("assets/image/tracking.png",height: 15, width: 15,
+                                              color: Theme.of(context).primaryColor,
+                                              ),
+                                              SizedBox(width: Dimensions.width10/2,),
+                                              Text("track order",
+                                              style: robotoMedium.copyWith(
+                                                fontSize: Dimensions.font12,
+                                                color: Theme.of(context).primaryColor
+                                              )),
+                                              
+                                            ],
+                                          )
                                         ),
                                       )
                                     ],

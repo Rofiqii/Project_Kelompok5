@@ -37,7 +37,7 @@ class AppColumn extends StatelessWidget {
             SizedBox(
               width: 3,
             ),
-            SmallText(text: "4.5"),
+            SmallText(text: "4"),
             SizedBox(
               width: 10,
             ),
