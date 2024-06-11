@@ -20,7 +20,7 @@ class AuthController extends GetxController implements GetxService {
       authRepo.saveUserToken(response.body["token"]);
       responseModel = ResponseModel(true, response.body["token"]);
     } else {
-      responseModel = ResponseModel(false, response.statusText!);
+      responseModel = ResponseModel(false, response.body["errors"][0]["message"]);
       print(response.statusCode);
       print(response.statusText);
       print("authController above");
@@ -47,7 +47,7 @@ class AuthController extends GetxController implements GetxService {
       print(response.body["token"].toString());
       responseModel = ResponseModel(true, response.body["token"]);
     } else {
-      responseModel = ResponseModel(false, response.statusText!);
+      responseModel = ResponseModel(false, response.body["errors"][0]["message"]);
       print("failed response model");
       print(response.statusCode);
       print(response.body["token"].toString());

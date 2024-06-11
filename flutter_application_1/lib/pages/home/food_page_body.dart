@@ -100,7 +100,7 @@ class _FoodPageBodyState extends State<FoodPageBody> {
               Container(
                 margin: const EdgeInsets.only(bottom: 2),
                 child: SmallText(
-                  text: "Makanan",
+                  text: "Konsumsi",
                 ),
               )
             ],
@@ -179,7 +179,7 @@ class _FoodPageBodyState extends State<FoodPageBody> {
                                       ),
                                       SmallText(
                                           text:
-                                              "Dengan karakteristik masakan china"),
+                                              recommendedProduct.recommendedProductList[index].location!),
                                       SizedBox(
                                         height: Dimensions.height10,
                                       ),

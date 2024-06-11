@@ -6,6 +6,7 @@ import 'package:flutter_application_1/auth/sign_up_page.dart';
 import 'package:flutter_application_1/base/custom_loader.dart';
 import 'package:flutter_application_1/base/show_custom_snackbar.dart';
 import 'package:flutter_application_1/controllers/auth_controller.dart';
+import 'package:flutter_application_1/controllers/user_controller.dart';
 import 'package:flutter_application_1/routes/route_helper.dart';
 import 'package:flutter_application_1/utils/colors.dart';
 import 'package:flutter_application_1/utils/dimensions.dart';
@@ -41,14 +42,18 @@ class SignInPage extends StatelessWidget {
       } else {
         authController.login(email, password).then((status) {
           if (status.isSuccess) {
-            Get.toNamed(RouteHelper.getCartPage());
+            Get.find<UserController>().getUserInfo();
+            // Future.delayed(Duration(seconds: 5), () {
+              Get.toNamed(RouteHelper.getInitial());
+            // });
+
             print("Login berhasil");
             print(status.message + "succe");
           } else {
             showCustomSnackBar(status.message);
             // print(error);
             //print(status.message + "fail");
-            
+
             // print(email +" " + password.toString());
           }
         });

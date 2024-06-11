@@ -10,6 +10,7 @@ import 'package:flutter_application_1/routes/route_helper.dart';
 import 'package:flutter_application_1/utils/colors.dart';
 import 'package:flutter_application_1/utils/dimensions.dart';
 import 'package:flutter_application_1/widgets/account_widget.dart';
+
 import 'package:flutter_application_1/widgets/app_icon.dart';
 import 'package:flutter_application_1/widgets/big_text.dart';
 import 'package:get/get.dart';
@@ -26,7 +27,6 @@ class AccountPage extends StatelessWidget {
     }
     return Scaffold(
       appBar: CustomAppBar(title: "Profil"),
-      
       body: GetBuilder<UserController>(builder: (userController) {
         return _userLoggedIn
             ? (userController.isLoading
@@ -176,9 +176,8 @@ class AccountPage extends StatelessWidget {
                       Get.toNamed(RouteHelper.getSignInPage());
                     },
                     child: Container(
-
                       width: double.maxFinite,
-                      height: Dimensions.height20 * 5,
+                      height: Dimensions.height20 * 4,
                       margin: EdgeInsets.only(
                           left: Dimensions.width20, right: Dimensions.width20),
                       decoration: BoxDecoration(

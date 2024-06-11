@@ -55,15 +55,30 @@ class CartPage extends StatelessWidget {
                       iconSize: Dimensions.iconSize24,
                     ),
                   ),
+                  // GestureDetector(
+                  //   onTap: () {
+                  //     Get.toNamed(RouteHelper.getCartHistoryPage());
+                  //   },
                   AppIcon(
                     icon: Icons.shopping_cart_rounded,
                     iconColor: Colors.white,
-                    backgroundColor: AppColors.mainColor,
+                    backgroundColor: AppColors.mainBlackColor,
                     iconSize: Dimensions.iconSize24,
                   ),
+                  // ),
                 ],
               ),
             ),
+            // Positioned(
+            //   top: Dimensions.height15 * 7,
+            //   left: Dimensions.width20,
+            //   right: Dimensions.width20,
+            //   // bottom: Dimensions.height10,
+            //   child: Divider(
+            //     color: AppColors.mainColor,
+            //     thickness: 1,
+            //   ),
+            // ),
             GetBuilder<CartController>(builder: (_cartController) {
               return _cartController.getItems.length > 0
                   ? Positioned(
@@ -161,7 +176,7 @@ class CartPage extends StatelessWidget {
                                                       .getItems[index].name!,
                                                   color: Colors.black54,
                                                 ),
-                                                SmallText(text: "Spicy"),
+                                                SmallText(text: "Laper"),
                                                 Row(
                                                   mainAxisAlignment:
                                                       MainAxisAlignment
@@ -358,7 +373,8 @@ class CartPage extends StatelessWidget {
                                                       AppTextField(
                                                         textController:
                                                             _noteController,
-                                                        hintText: 'ketik disini',
+                                                        hintText:
+                                                            'ketik disini',
                                                         icon: Icons.note,
                                                         maxLines: true,
                                                       ),
@@ -383,7 +399,7 @@ class CartPage extends StatelessWidget {
                               child: SizedBox(
                                 width: double.maxFinite,
                                 child: CommonTextButton(
-                                  text: "Opsi Pembayaran",
+                                  text: "Tambahkan notes disini",
                                 ),
                               ),
                             ),

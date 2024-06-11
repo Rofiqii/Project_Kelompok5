@@ -1,3 +1,4 @@
+import 'package:flutter_application_1/base/no_data_page.dart';
 import 'package:flutter_application_1/data/repository/order_repo.dart';
 import 'package:flutter_application_1/models/order_model.dart';
 import 'package:flutter_application_1/models/place_order_model.dart';
@@ -55,13 +56,14 @@ class OrderController extends GetxController implements GetxService {
             orderModel.orderStatus == 'processing' ||
             orderModel.orderStatus == 'handover' ||
             orderModel.orderStatus == 'accepted' ||
-            orderModel.orderStatus == 'picked_up'
-            ) {
+            orderModel.orderStatus == 'picked_up') {
           _currentOrderList.add(orderModel);
         } else {
           _historyOrderList.add(orderModel);
         }
       });
+      // _isLoading = false;
+      // NoDataPage(text: "kosong boi");
       print("test3");
     } else {
       print("test2");

@@ -5,6 +5,7 @@ class SmallText extends StatelessWidget {
   final String text;
   double size;
   double height;
+  
 
   SmallText(
       {Key? key,
@@ -22,7 +23,7 @@ class SmallText extends StatelessWidget {
           fontFamily: 'Roboto',
           fontSize: 10,
           color: color,
-          fontWeight: FontWeight.w400),
+          fontWeight: FontWeight.w500),
     );
   }
 }

@@ -2,6 +2,7 @@ import 'dart:convert';
 
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/widgets.dart';
 import 'package:flutter_application_1/base/no_data_page.dart';
 import 'package:flutter_application_1/controllers/cart_controller.dart';
 import 'package:flutter_application_1/models/cart_model.dart';
@@ -70,12 +71,17 @@ class CartHistory extends StatelessWidget {
             mainAxisAlignment: MainAxisAlignment.spaceAround,
             children: [
               BigText(
-                text: "Cart History",
+                text: "Riwayat Keranjang",
                 color: Colors.white,
               ),
-              AppIcon(
-                icon: Icons.shopping_cart_outlined,
-                iconColor: AppColors.mainColor,
+              GestureDetector(
+                onTap: () {
+                  Get.toNamed(RouteHelper.getCartPage());
+                },
+                child: AppIcon(
+                  icon: Icons.shopping_cart_outlined,
+                  iconColor: AppColors.mainColor,
+                ),
               )
             ],
           ),

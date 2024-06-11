@@ -204,8 +204,8 @@ class PopularFoodDetail extends StatelessWidget {
                 ),
               ),
               SizedBox(
-                      width: Dimensions.width10 * 4 ,
-                    ),
+                width: Dimensions.width10 * 4,
+              ),
               GestureDetector(
                 onTap: () {
                   popularProduct.addItem(product);

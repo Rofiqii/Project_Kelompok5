@@ -1,6 +1,7 @@
 import 'package:flutter_application_1/auth/sign_in_page.dart';
 import 'package:flutter_application_1/auth/sign_up_page.dart';
 import 'package:flutter_application_1/models/order_model.dart';
+import 'package:flutter_application_1/pages/cart/cart_history.dart';
 import 'package:flutter_application_1/pages/cart/cart_page.dart';
 import 'package:flutter_application_1/pages/food/popular_food_detail.dart';
 import 'package:flutter_application_1/pages/food/recommended_food_detail.dart';
@@ -18,7 +19,7 @@ class RouteHelper {
   static const String recommendedFood = "/recommended-food";
   static const String signIn = "/sign-in";
   static const String cartPage = "/cart-page";
-
+  static const String cartHistoryPage = "/cart-history-page";
   static const String payment = '/payment';
   static const String orderSuccess = '/order-successful';
 
@@ -29,6 +30,7 @@ class RouteHelper {
   static String getRecommendedFood(int pageId, String page) =>
       '$recommendedFood?pageId=$pageId&page=$page';
   static String getCartPage() => '$cartPage';
+  static String getCartHistoryPage() => '$cartHistoryPage';
   static String getSignInPage() => '$signIn';
   static String getPaymentPage(String id, int userID) =>
       '$payment?id=$id&userID=$userID';
@@ -69,6 +71,12 @@ class RouteHelper {
         name: cartPage,
         page: () {
           return CartPage();
+        },
+        transition: Transition.fadeIn),
+    GetPage(
+        name: cartHistoryPage,
+        page: () {
+          return CartHistory();
         },
         transition: Transition.fadeIn),
     GetPage(

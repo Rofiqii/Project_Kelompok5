@@ -6,6 +6,7 @@ import 'package:flutter_application_1/auth/sign_in_page.dart';
 import 'package:flutter_application_1/base/custom_loader.dart';
 import 'package:flutter_application_1/base/show_custom_snackbar.dart';
 import 'package:flutter_application_1/controllers/auth_controller.dart';
+import 'package:flutter_application_1/controllers/user_controller.dart';
 import 'package:flutter_application_1/models/signup_body_model.dart';
 import 'package:flutter_application_1/routes/route_helper.dart';
 import 'package:flutter_application_1/utils/colors.dart';
@@ -58,6 +59,7 @@ class SignUpPage extends StatelessWidget {
         //then if its true you get response update from auth controller.
         authController.registration(signUpBody).then((status) {
           if (status.isSuccess) {
+            Get.find<UserController>().getUserInfo();
             print("Registrasi berhasil");
             print(signUpBody.toJson());
             Get.offNamed(RouteHelper.getInitial());

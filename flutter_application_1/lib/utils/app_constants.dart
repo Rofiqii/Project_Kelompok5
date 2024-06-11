@@ -4,7 +4,8 @@ class AppConstants {
 
 //dependencies
   // static const String BASE_URL = "https://mvs.bslmeiyu.com";
-  static const String BASE_URL = "http://127.0.0.1:8000";
+  static const String BASE_URL = "http://restorant.my.id";
+  // static const String BASE_URL = "http://127.0.0.1:8000";
   // static const String BASE_URL_MEIYI = "https://mvs.bslmeiyu.com";
   static const String POPULAR_PRODUCT_URI = "/api/v1/products/popular";
   static const String RECOMMENDED_PRODUCT_URI = "/api/v1/products/recommended";
@@ -21,7 +22,7 @@ class AppConstants {
   */
   static const String PLACE_ORDER_URI = "/api/v1/customer/order/place";
   static const String ORDER_LIST_URI = "/api/v1/customer/order/list";
-  static const String TOKEN = "";
+  static const String TOKEN = "DBToken";
   static const String PHONE = "";
   static const String PASSWORD = "";
   static const String CART_LIST = "cart-list";
