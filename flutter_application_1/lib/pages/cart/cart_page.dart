@@ -69,16 +69,16 @@ class CartPage extends StatelessWidget {
                 ],
               ),
             ),
-            // Positioned(
-            //   top: Dimensions.height15 * 7,
-            //   left: Dimensions.width20,
-            //   right: Dimensions.width20,
-            //   // bottom: Dimensions.height10,
-            //   child: Divider(
-            //     color: AppColors.mainColor,
-            //     thickness: 1,
-            //   ),
-            // ),
+            Positioned(
+              top: Dimensions.height15 * 7,
+              left: Dimensions.width20,
+              right: Dimensions.width20,
+              // bottom: Dimensions.height10,
+              child: Divider(
+                color: AppColors.mainColor,
+                thickness: 1,
+              ),
+            ),
             GetBuilder<CartController>(builder: (_cartController) {
               return _cartController.getItems.length > 0
                   ? Positioned(

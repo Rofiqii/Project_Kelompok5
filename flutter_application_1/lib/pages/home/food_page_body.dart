@@ -122,6 +122,7 @@ class _FoodPageBodyState extends State<FoodPageBody> {
                         Get.toNamed(                          
                             RouteHelper.getRecommendedFood(index, "home"));
                       },
+                      
                       child: Container(
                         margin: EdgeInsets.only(
                             left: Dimensions.width20,

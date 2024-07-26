@@ -32,6 +32,7 @@ class _SplashScreenState extends State<SplashScreen>
   void initState() {
     super.initState();
     _loadResource();
+    
     // WidgetsBinding.instance.addPostFrameCallback((_) {
     //   ApiChecker();
     // });
